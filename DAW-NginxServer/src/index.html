@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Proyecto DAW - Servidor Nginx</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007cba;
+            padding-bottom: 10px;
+        }
+        .status {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .service {
+            background: #007cba;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🚀 Proyecto DAW - Servidor Nginx con Docker</h1>
+
+            <div class="status">
+                <h2>✅ Servicio Funcionando Correctamente</h2>
+                <p>El servidor Nginx está operativo dentro de un contenedor
+                    Docker.</p>
+            </div>
+
+            <div class="services">
+                <div class="service">
+                    <h3>🌐 Nginx</h3>
+                    <p>Servidor Web</p>
+                    <p><strong>Puerto: 90</strong></p>
+                </div>
+                <div class="service">
+                    <h3>🗄️ MariaDB</h3>
+                    <p>Base de Datos</p>
+                    <p><strong>Puerto: 3306</strong></p>
+                </div>
+                <div class="service">
+                    <h3>📊 PHPMyAdmin</h3>
+                    <p>Admin BD Web</p>
+                    <p><strong>Puerto: 8080</strong></p>
+                </div>
+            </div>
+
+            <h2>📋 Información del Sistema</h2>
+            <ul>
+                <li><strong>Contenedor:</strong> Nginx Latest</li>
+                <li><strong>Red Docker:</strong> web-network</li>
+                <li><strong>Volúmenes:</strong> Configuración persistente</li>
+                <li><strong>Estado:</strong> 🟢 En línea</li>
+            </ul>
+
+            <h2>🔗 Enlaces de Acceso</h2>
+            <ul>
+                <li><a href="http://localhost:8080"
+                        target="_blank">PHPMyAdmin</a></li>
+            </ul>
+        </div>
+    </body>
+</html>

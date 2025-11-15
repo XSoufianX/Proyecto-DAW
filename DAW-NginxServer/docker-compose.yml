@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  nginx:
+    build: ./nginx
+    container_name: nginx-custom
+    ports:
+      - "90:90"
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - web-network
+    restart: unless-stopped
+
+  mariadb:
+    image: mariadb:latest
+    container_name: db-server
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - web-network
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8080:80"
+    networks:
+      - web-network
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+  client:
+    image: alpine:latest
+    container_name: test-client
+    command: tail -f /dev/null
+    networks:
+      - web-network
+    restart: unless-stopped
+
+networks:
+  web-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16

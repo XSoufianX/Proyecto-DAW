@@ -1,21 +1,39 @@
-# Proyecto-DAW
+# 🚀 Proyecto DAW - Servidor Nginx con Docker
 
-# Estructura del Proyecto
+## 📋 Descripción
+Despliegue de servidor web Nginx personalizado con MariaDB y PHPMyAdmin usando Docker Compose. Proyecto práctico para el examen de DAW Primer Trimestre.
 
+## ✨ Características
+- 🌐 **Nginx** en puerto 90 con página 404 personalizada
+- 🗄️ **MariaDB** con volumen persistente de datos
+- 📊 **PHPMyAdmin** en puerto 8080 para administración web
+- 🔗 **Red Docker personalizada** para comunicación entre contenedores
+- 🧪 **Contenedor cliente** para pruebas de conectividad
+- ⚡ **Configuración optimizada** con cache y compresión
+
+## 🏗️ Estructura del Proyecto
+
+## 🚀 Despliegue Rápido
 DAM-NginxServer/
 │
 ├── 📁 mysql/
-│   ├── init.sql                 # Script inicialización BD
-│   └── data/                    # Volumen persistente
+│ ├── init.sql 
+│ └── data/ 
 │
 ├── 📁 nginx/
-│   ├── Dockerfile              # Nginx personalizado (puerto 90)
-│   └── nginx.conf              # Configuración con seguridad
+│ ├── Dockerfile 
+│ └── nginx.conf 
 │
 ├── 📁 src/
-│   ├── index.html              # Página principal
-│   └── 404.html                # Página error personalizada
-│
-├── docker-compose.yml          # Orquestación servicios
-├── README.md                   # Documentación
-└── capturas/                   # Capturas de pantalla
+│ ├── index.html 
+│ └── 404.html 
+├── docker-compose.yml 
+├── README.md 
+└── proyecto-daw.docx
+```bash
+# Clonar el repositorio
+git clone https://github.com/tuusuario/proyecto-daw.git
+cd proyecto-daw
+
+# Iniciar todos los servicios
+docker-compose up -d --build

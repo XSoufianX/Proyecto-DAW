@@ -14,6 +14,8 @@ Despliegue de servidor web Nginx personalizado con MariaDB y PHPMyAdmin usando D
 ## 🏗️ Estructura del Proyecto
 
 ## 🚀 Despliegue Rápido
+<img width="429" height="342" alt="image" src="https://github.com/user-attachments/assets/e3e29048-16c9-4c11-973b-a75f8f944644" />
+
 DAM-NginxServer/
 │
 ├── 📁 mysql/

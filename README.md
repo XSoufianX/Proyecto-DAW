@@ -1,2 +1,21 @@
 # Proyecto-DAW
-Proyecto desarrollado para la materia de Entornos de Desarrollo en el ciclo DAW. Incluye un documento Word que contendrá la memoria del trabajo, este docmento se ira versionando según las fases del proyecto.
+
+# Estructura del Proyecto
+
+DAM-NginxServer/
+│
+├── 📁 mysql/
+│   ├── init.sql                 # Script inicialización BD
+│   └── data/                    # Volumen persistente
+│
+├── 📁 nginx/
+│   ├── Dockerfile              # Nginx personalizado (puerto 90)
+│   └── nginx.conf              # Configuración con seguridad
+│
+├── 📁 src/
+│   ├── index.html              # Página principal
+│   └── 404.html                # Página error personalizada
+│
+├── docker-compose.yml          # Orquestación servicios
+├── README.md                   # Documentación
+└── capturas/                   # Capturas de pantalla

@@ -15,24 +15,6 @@ Despliegue de servidor web Nginx personalizado con MariaDB y PHPMyAdmin usando D
 
 ## 🚀 Despliegue Rápido
 <img width="429" height="342" alt="image" src="https://github.com/user-attachments/assets/e3e29048-16c9-4c11-973b-a75f8f944644" />
-
-DAM-NginxServer/
-│
-├── 📁 mysql/
-│   ├── init.sql              # Script inicialización BD
-│   └── data/                 # Volumen persistente
-│
-├── 📁 nginx/
-│   ├── Dockerfile           # Nginx personalizado
-│   └── nginx.conf           # Configuración servidor
-│
-├── 📁 src/
-│   ├── index.html           # Página principal
-│   └── 404.html             # Error 404 personalizado
-│
-├── docker-compose.yml       # Orquestación servicios
-├── README.md                # Documentación
-└── proyecto-daw.docx        # Documento completo
 ```bash
 # Clonar el repositorio
 git clone https://github.com/tuusuario/proyecto-daw.git

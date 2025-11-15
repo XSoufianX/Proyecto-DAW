@@ -15,6 +15,8 @@ Despliegue de servidor web Nginx personalizado con MariaDB y PHPMyAdmin usando D
 
 ## 🚀 Despliegue Rápido
 <img width="429" height="342" alt="image" src="https://github.com/user-attachments/assets/e3e29048-16c9-4c11-973b-a75f8f944644" />
+
+
 ```bash
 # Clonar el repositorio
 git clone https://github.com/tuusuario/proyecto-daw.git

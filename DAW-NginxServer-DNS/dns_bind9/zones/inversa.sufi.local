@@ -1,0 +1,14 @@
+$TTL 86400
+$ORIGIN 0.23.172.in-addr.arpa.
+
+@       IN      SOA     ns1.sufi.local. admin.sufi.local. (
+                        2024110701
+                        21600
+                        3600
+                        604800
+                        86400 )
+
+@               IN      NS      ns1.sufi.local.
+
+2               IN      PTR     ns1.sufi.local.
+3               IN      PTR     www.sufi.local.

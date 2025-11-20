@@ -1,0 +1,97 @@
+version: "3.8"
+services:
+  dns-server:
+    build: ./dns_bind9
+    container_name: Dns_Bind9
+    hostname: servidorBind9
+    networks:
+      web-network:
+        ipv4_address: 172.23.0.2
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+    volumes:
+      - ./dns_bind9/config/named.conf.local:/etc/bind/named.conf.local
+      - ./dns_bind9/config/named.conf.options:/etc/bind/named.conf.options
+      - ./dns_bind9/zones/db.sufi.local:/etc/bind/db.sufi.local
+      - ./dns_bind9/zones/inversa.sufi.local:/etc/bind/inversa.sufi.local
+    dns:
+      - 127.0.0.1
+    cap_add:
+      - NET_ADMIN
+    command: >
+      sh -c "echo 'nameserver 127.0.0.1' > /etc/resolv.conf &&
+            echo 'search sufi.local' >> /etc/resolv.conf &&
+            named -g -c /etc/bind/named.conf -u bind"
+    restart: unless-stopped
+  nginx:
+    build: ./nginx
+    container_name: nginx-Personalizado
+    ports:
+      - "90:90"
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      web-network:
+        ipv4_address: 172.23.0.3
+    dns:
+      - 172.23.0.2
+      - 8.8.8.8
+    depends_on:
+      - dns-server
+    cap_add:
+      - NET_ADMIN
+    command: >
+      sh -c "echo 'nameserver 172.23.0.2' > /etc/resolv.conf &&
+             echo 'nameserver 8.8.8.8' >> /etc/resolv.conf &&
+             echo 'search sufi.local' >> /etc/resolv.conf &&
+             nginx -g 'daemon off;'"
+    restart: unless-stopped
+  mariadb:
+    image: mariadb:latest
+    container_name: db-server
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      web-network:
+        ipv4_address: 172.23.0.4
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "8080:80"
+    networks:
+      web-network:
+        ipv4_address: 172.23.0.5
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+
+  client:
+    image: alpine:latest
+    container_name: test-client
+    command: tail -f /dev/null
+    networks:
+      web-network:
+        ipv4_address: 172.23.0.6
+    restart: unless-stopped
+networks:
+  web-network:
+    name: web-network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16
+          gateway: 172.23.0.1

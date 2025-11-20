@@ -1,0 +1,19 @@
+$TTL 86400
+$ORIGIN sufi.local.
+@       IN      SOA     ns1.sufi.local. admin.sufi.local. (
+                        2024111401      
+                        21600
+                        3600
+                        604800
+                        86400 )
+@               IN      NS      ns1.sufi.local.
+; Servidor DNS
+ns1             IN      A       172.23.0.2
+
+; 
+@               IN      A       127.0.0.1
+www             IN      A       127.0.0.1
+
+; 
+www             IN      A       172.23.0.3
+@               IN      A       172.23.0.3
